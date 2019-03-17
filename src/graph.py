@@ -5,10 +5,10 @@ import networkx as net
 def create_graph1():
     graph = net.DiGraph()
 
-    graph.add_node('Univ')
-    graph.add_node('ProfA')
-    graph.add_node('ProfB')
     graph.add_node('StudA')
+    graph.add_node('ProfA')
+    graph.add_node('Univ')
+    graph.add_node('ProfB')
     graph.add_node('StudB')
 
     graph.add_edge('Univ', 'ProfA')
@@ -39,3 +39,25 @@ def create_graph2():
     graph.add_edge('B', 'flour')
 
     return graph
+
+
+def create_users_graph(n):
+    graph = net.DiGraph()
+    with open('../data/reviews') as file:
+        for cnt, line in enumerate(file):
+            if cnt > n:
+                break
+            if line.startswith('user: '):
+                user, friends = parse_user(line, file)
+                graph.add_node(user)
+                for f in friends:
+                    graph.add_node(f)
+                    graph.add_edge(user, f)
+                    # graph.add_edge(f, user)
+    return graph
+
+
+def parse_user(line, file):
+    name = line.split(':')[1].strip()
+    names = file.readline().replace('friends:\t', '').split('\t')
+    return name, names
