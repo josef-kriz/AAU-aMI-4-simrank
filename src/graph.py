@@ -24,12 +24,12 @@ def create_graph1():
 def create_graph2():
     graph = net.DiGraph()
 
-    graph.add_node('A')
-    graph.add_node('B')
-    graph.add_node('sugar')
-    graph.add_node('frosting')
-    graph.add_node('eggs')
-    graph.add_node('flour')
+    graph.add_node('A', type='user')
+    graph.add_node('B', type='user')
+    graph.add_node('sugar', type='item')
+    graph.add_node('frosting', type='item')
+    graph.add_node('eggs', type='item')
+    graph.add_node('flour', type='item')
 
     graph.add_edge('A', 'sugar')
     graph.add_edge('A', 'frosting')
