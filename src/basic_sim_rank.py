@@ -3,13 +3,13 @@
 # # Jeh, Glen and Widom, Jennifer (2001) SimRank: A Measure of Structural-Context Similarity. Equation (1)
 # graph = any directed graph
 # c = a constant between 0 and 1
-def basic_sim_rank(graph, c):
+def basic_sim_rank(graph, c, k):
     m = initialize_matrix(graph)
 
-    for i in range(1, 5):
+    for i in range(1, k):
         for node_a in graph.nodes():
-            if node_a == 'Univ':
-                k = 100
+            # if node_a == 'Univ':
+            #     k = 100
             for node_b in graph.nodes():
                 # print(i,node_a,node_b, m[node_a])
                 similarity = get_similarity(c, graph, m, node_a, node_b)

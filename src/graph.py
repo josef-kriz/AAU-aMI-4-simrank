@@ -60,4 +60,5 @@ def create_users_graph(n):
 def parse_user(line, file):
     name = line.split(':')[1].strip()
     names = file.readline().replace('friends:\t', '').split('\t')
+    names[len(names) - 1] = names[len(names) - 1].replace("\n","")
     return name, names
